@@ -1,8 +1,6 @@
 # Pseudo Identity Provider
 
-[TOC]
-
-**Note:** - This is not an officially supported Google product.
+**Note:** This is not an officially supported Google product.
 
 Pseudo IdP is a simple, **fake**,
 [OAuth2](https://datatracker.ietf.org/doc/html/rfc6749) or
