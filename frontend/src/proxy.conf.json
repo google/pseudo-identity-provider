@@ -1,0 +1,14 @@
+{
+    "/configschema": {
+    "target": "http://localhost:8090",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+    },
+    "/config": {
+        "target": "http://localhost:8090",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+        }
+}
