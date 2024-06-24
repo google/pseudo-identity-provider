@@ -563,7 +563,8 @@ omitting the Nonce, if any.
 [Daniel Fett's blog](https://danielfett.de/2020/05/04/mix-up-revisited/) has
 in-depth coverage of Mix-up Attacks and mitigations.
 
-![Mix-up attack](docs/mixup_simple.png "Mix-up attack")
+![Mix-up attack](docs/mixup_simple.png#gh-light-mode-only "Mix-up attack")
+![Mix-up attack](docs/mixup_simple_dm.png#gh-dark-mode-only "Mix-up attack")
 
 ```
 "auth_action": {
@@ -618,7 +619,8 @@ Mix Up version above, however the issue still exists using a Chosen Nonce
 variation. Here a session is started with the valid IdP and the nonce from that
 transaction is inserted into the flow for the Pseudo IdP.
 
-![Chosen nonce mix-up attack](docs/mixup_nonce.png "Chosen nonce mix-up attack")
+![Chosen nonce mix-up attack](docs/mixup_nonce.png#gh-light-mode-only "Chosen nonce mix-up attack")
+![Chosen nonce mix-up attack](docs/mixup_nonce_dm.png#gh-dark-mode-only "Chosen nonce mix-up attack")
 
 ```
 "auth_action": {
