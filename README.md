@@ -109,22 +109,22 @@ go run ./standalone/standalone_main.go
 ## Testing it out
 
 Test out your newly deployed Pseudo IdP with the OIDC Debugger client at
-https://openidconnect.net/.
+<https://openidconnect.net/>.
 
 Pseudo IdP's default configuration mimics a valid OIDC IdP. To configure the
-OIDC Debugger, click the `Configuration` button and enter the OIDC discover
-document URL for your deployment
+OIDC Debugger, click the `Configuration` button, choose the Custom server
+template, and enter the OIDC discovery document URL for your deployment
 `https://<your-domain>/.well-known/openid-configuration`. Press `Use Discover
 Document` to auto-populate the other fields and `Save`. Then follow various
 steps to test out the OIDC flow, exchange an auth code, and verify the token.
-The site also links to https://jwt.io where you can inspect the JWT further.
+The site also links to <https://jwt.io> where you can inspect the JWT further.
 
 You can view the requests and responses the IdP makes at
 `https://<your-domain>/log`. Log in with the username and password you set while
 deploying the application. The log is useful for debugging how the client
 interacts with the IdP and to ensure the IdP is responding as you expect.
 
-## Using Pseudo IdP for Security Testing
+### Using Pseudo IdP for Security Testing
 
 The power of the tool comes from modifying its behavior to test the security
 guarantees of the client. As an example, let's see how the OIDC Debugger client
@@ -146,7 +146,7 @@ real issue that existed in the wild. You can learn more about the JWT format at
 ![Remove Signature Option](docs/removesig.png "Remove Signature Option")
 
 Now let's see how the OIDC Debugger handles our incorrectly signed JWT. Navigate
-to https://openidconnect.net/ and try the flow again.
+to <https://openidconnect.net/> and try the flow again.
 
 Press the `Verify` button after receiving the token you'll see that the token
 verification fails. Inspecting the error code further in your browser's
@@ -190,54 +190,54 @@ of authorization endpoint parameters for OAuth2 and the OIDC extensions.
 
 ![Authorization Endpoint Tab](docs/auth_endpoint.png "Authorization Endpoint Tab")
 
-*   **Endpoint Action** - Determines how the /oauth2/auth endpoint behaves.
+* **Endpoint Action** - Determines how the /oauth2/auth endpoint behaves.
 
-    *   `redirect` returns a 302 HTTP redirect with a location and parameters
+  * `redirect` returns a 302 HTTP redirect with a location and parameters
         based on the configuration.
-    *   `error` returns a specified HTTP error code.
-    *   `block` sleeps on receiving the request causing it to time out.
+  * `error` returns a specified HTTP error code.
+  * `block` sleeps on receiving the request causing it to time out.
 
-*   **Redirect Config**
+* **Redirect Config**
 
-    *   **Redirect Target**
+  * **Redirect Target**
 
-        *   **Use custom redirect** - By default, the redirect target is defined
+    * **Use custom redirect** - By default, the redirect target is defined
             in the `redirect_uri` input parameter. Selecting `Use custom
             redirect` allows you to specify a custom redirect URI and ignore the
             input value.
 
-        *   **Target URL** - Specify a custom redirect URL if `Use custom
+    * **Target URL** - Specify a custom redirect URL if `Use custom
             redirect` is selected.
 
-        *   **Custom processor key** - A
+    * **Custom processor key** - A
             [custom processor](#adding-custom-parameters) key value for
             customized evaluation of the redirect uri.
 
-    *   **Default Parameter Action**
+  * **Default Parameter Action**
 
-        *   `passthrough` keeps parameters received in the input URL on the
+    * `passthrough` keeps parameters received in the input URL on the
             redirect URL unless otherwise configured in the `Parameters`
             section.
-        *   `omit` does not include any parameters in the redirect URL unless
+    * `omit` does not include any parameters in the redirect URL unless
             configured in the `Parameters` section.
 
-    *   **Parameters** - Add parameter configuration with the `+` button. Remove
+  * **Parameters** - Add parameter configuration with the `+` button. Remove
         them with the `-` button.
 
-        *   **Identifier of the parameter** - The name of the parameter.
-        *   **Parameter Action** - How the output parameter value is determined.
-            *   `passthrough` keeps the value as it is on the input URL.
-            *   `set` sets the output parameter to a configured value. Set
+    * **Identifier of the parameter** - The name of the parameter.
+    * **Parameter Action** - How the output parameter value is determined.
+      * `passthrough` keeps the value as it is on the input URL.
+      * `set` sets the output parameter to a configured value. Set
                 supports [templated parameters](#templated_parameters) that can
                 access various server and request properties.
-            *   `omit` does not include the parameter in the output.
-            *   `random` sets the parameter to a random base64 string.
-            *   `custom` uses a [custom processor](#adding-custom-parameters) to
+      * `omit` does not include the parameter in the output.
+      * `random` sets the parameter to a random base64 string.
+      * `custom` uses a [custom processor](#adding-custom-parameters) to
                 evaluate the parameter.
-        *   **JSON Value Type** - This is ignored for the Authorization
+    * **JSON Value Type** - This is ignored for the Authorization
             endpoint, but is used in other endpoints that return JSON data.
 
-    *   **Use Hash Fragment** - Put all parameters in the
+  * **Use Hash Fragment** - Put all parameters in the
         [URL Hash Fragment](https://en.wikipedia.org/wiki/URI_fragment). This is
         useful for Implicit flows or clients that are otherwise expecting hash
         frament parameters.
@@ -252,37 +252,37 @@ For Pseudo IdP it is at https://<your-domain>/oauth2/token
 
 ![Token Endpoint Tab](docs/token_endpoint.png "Token Endpoint Tab")
 
-*   **Endpoint Action** - Determines how the /oauth2/token endpoint behaves.
+* **Endpoint Action** - Determines how the /oauth2/token endpoint behaves.
 
-    *   `redirect` returns a successful token response with parameters based on
+  * `redirect` returns a successful token response with parameters based on
         the configuration.
-    *   `error` returns a specified HTTP error code.
-    *   `block` sleeps on receiving the request causing it to time out.
+  * `error` returns a specified HTTP error code.
+  * `block` sleeps on receiving the request causing it to time out.
 
-*   **Response Config**
+* **Response Config**
 
-    *   **Parameters** - Add parameter configuration with the `+` button. Remove
+  * **Parameters** - Add parameter configuration with the `+` button. Remove
         them with the `-` button.
-        *   **Identifier of the parameter** - The name of the parameter.
-        *   **Parameter Action** - How the output parameter value is determined.
-            *   `passthrough` keeps the value as it is on the input URL.
-            *   `set` sets the output parameter to a configured value. Set
+    * **Identifier of the parameter** - The name of the parameter.
+    * **Parameter Action** - How the output parameter value is determined.
+      * `passthrough` keeps the value as it is on the input URL.
+      * `set` sets the output parameter to a configured value. Set
                 supports [templated parameters](#templated_parameters) that can
                 access various server and request properties.
-            *   `omit` does not include the parameter in the output.
-            *   `random` sets the parameter to a random base64 string.
-            *   `custom` uses a [custom processor](#adding-custom-parameters) to
+      * `omit` does not include the parameter in the output.
+      * `random` sets the parameter to a random base64 string.
+      * `custom` uses a [custom processor](#adding-custom-parameters) to
                 evaluate the parameter.
-        *   **JSON Value Type** - A value is assumed to have the string type
+    * **JSON Value Type** - A value is assumed to have the string type
             unless this is set to a non-string value.
-            *   `string` the set value is interpreted as a string. This is the
+      * `string` the set value is interpreted as a string. This is the
                 default.
-            *   `array` the value is interpreted as an array of strings.
-            *   `number` the value is interpreted as a number. It must
+      * `array` the value is interpreted as an array of strings.
+      * `number` the value is interpreted as a number. It must
                 successfully parse as a number.
-            *   `boolean` the value is interpreted as a boolean value. It must
+      * `boolean` the value is interpreted as a boolean value. It must
                 be `true` or `false`.
-            *   `object` the value is interpreted as a JSON object. The value
+      * `object` the value is interpreted as a JSON object. The value
                 must be JSON formatted text.
 
 ### UserInfo Endpoint
@@ -292,37 +292,37 @@ https://<your-domain>/oauth2/userinfo.
 
 ![UserInfo Endpoint Tab](docs/userinfo_endpoint.png "UserInfo Endpoint Tab")
 
-*   **Endpoint Action** - Determines how the /oauth2/userinfo endpoint behaves.
+* **Endpoint Action** - Determines how the /oauth2/userinfo endpoint behaves.
 
-    *   `redirect` returns a successful userinfo response with parameters based
+  * `redirect` returns a successful userinfo response with parameters based
         on the configuration.
-    *   `error` returns a specified HTTP error code.
-    *   `block` sleeps on receiving the request causing it to time out.
+  * `error` returns a specified HTTP error code.
+  * `block` sleeps on receiving the request causing it to time out.
 
-*   **Response Config**
+* **Response Config**
 
-    *   **Parameters** - Add parameter configuration with the `+` button. Remove
+  * **Parameters** - Add parameter configuration with the `+` button. Remove
         them with the `-` button.
-        *   **Identifier of the parameter** - The name of the parameter.
-        *   **Parameter Action** - How the output parameter value is determined.
-            *   `passthrough` keeps the value as it is on the input URL.
-            *   `set` sets the output parameter to a configured value. Set
+    * **Identifier of the parameter** - The name of the parameter.
+    * **Parameter Action** - How the output parameter value is determined.
+      * `passthrough` keeps the value as it is on the input URL.
+      * `set` sets the output parameter to a configured value. Set
                 supports [templated parameters](#templated_parameters) that can
                 access various server and request properties.
-            *   `omit` does not include the parameter in the output.
-            *   `random` sets the parameter to a random base64 string.
-            *   `custom` uses a [custom processor](#adding-custom-parameters) to
+      * `omit` does not include the parameter in the output.
+      * `random` sets the parameter to a random base64 string.
+      * `custom` uses a [custom processor](#adding-custom-parameters) to
                 evaluate the parameter.
-        *   **JSON Value Type** - A value is assumed to have the string type
+    * **JSON Value Type** - A value is assumed to have the string type
             unless this is set to a non-string value.
-            *   `string` the set value is interpreted as a string. This is the
+      * `string` the set value is interpreted as a string. This is the
                 default.
-            *   `array` the value is interpreted as an array of strings.
-            *   `number` the value is interpreted as a number. It must
+      * `array` the value is interpreted as an array of strings.
+      * `number` the value is interpreted as a number. It must
                 successfully parse as a number.
-            *   `boolean` the value is interpreted as a boolean value. It must
+      * `boolean` the value is interpreted as a boolean value. It must
                 be `true` or `false`.
-            *   `object` the value is interpreted as a JSON object. The value
+      * `object` the value is interpreted as a JSON object. The value
                 must be JSON formatted text.
 
 ### Discovery Doc Endpoint
@@ -334,38 +334,38 @@ located.
 
 ![Discovery Endpoint Tab](docs/discovery_endpoint.png "Discovery Endpoint Tab")
 
-*   **Endpoint Action** - Determines how the /.well-known/openid-configuration
+* **Endpoint Action** - Determines how the /.well-known/openid-configuration
     endpoint behaves.
 
-    *   `redirect` returns a successful discovery response with parameters based
+  * `redirect` returns a successful discovery response with parameters based
         on the configuration.
-    *   `error` returns a specified HTTP error code.
-    *   `block` sleeps on receiving the request causing it to time out.
+  * `error` returns a specified HTTP error code.
+  * `block` sleeps on receiving the request causing it to time out.
 
-*   **Response Config**
+* **Response Config**
 
-    *   **Parameters** - Add parameter configuration with the `+` button. Remove
+  * **Parameters** - Add parameter configuration with the `+` button. Remove
         them with the `-` button.
-        *   **Identifier of the parameter** - The name of the parameter.
-        *   **Parameter Action** - How the output parameter value is determined.
-            *   `passthrough` keeps the value as it is on the input URL.
-            *   `set` sets the output parameter to a configured value. Set
+    * **Identifier of the parameter** - The name of the parameter.
+    * **Parameter Action** - How the output parameter value is determined.
+      * `passthrough` keeps the value as it is on the input URL.
+      * `set` sets the output parameter to a configured value. Set
                 supports [templated parameters](#templated_parameters) that can
                 access various server and request properties.
-            *   `omit` does not include the parameter in the output.
-            *   `random` sets the parameter to a random base64 string.
-            *   `custom` uses a [custom processor](#adding-custom-parameters) to
+      * `omit` does not include the parameter in the output.
+      * `random` sets the parameter to a random base64 string.
+      * `custom` uses a [custom processor](#adding-custom-parameters) to
                 evaluate the parameter.
-        *   **JSON Value Type** - A value is assumed to have the string type
+    * **JSON Value Type** - A value is assumed to have the string type
             unless this is set to a non-string value.
-            *   `string` the set value is interpreted as a string. This is the
+      * `string` the set value is interpreted as a string. This is the
                 default.
-            *   `array` the value is interpreted as an array of strings.
-            *   `number` the value is interpreted as a number. It must
+      * `array` the value is interpreted as an array of strings.
+      * `number` the value is interpreted as a number. It must
                 successfully parse as a number.
-            *   `boolean` the value is interpreted as a boolean value. It must
+      * `boolean` the value is interpreted as a boolean value. It must
                 be `true` or `false`.
-            *   `object` the value is interpreted as a JSON object. The value
+      * `object` the value is interpreted as a JSON object. The value
                 must be JSON formatted text.
 
 ### ID Token Config
@@ -377,32 +377,32 @@ Endpoint configuration to set the `id_token` parameter.
 
 ![ID Token Config Tab](docs/idtoken_config.png "ID Token Config Tab")
 
-*   **JWT Signature Algorithm** - Sets the signature algorithm for the JWT.
+* **JWT Signature Algorithm** - Sets the signature algorithm for the JWT.
     Available options are `RS256`. `RS384`. `RS512`. `ES256`, `ES384`, `ES512`,
     `HS256`, and `none`.
 
-*   **Remove Signature** - Remove the signature component of the JWT.
+* **Remove Signature** - Remove the signature component of the JWT.
 
-*   **Use Incorrect Key** - Sign the token with a key that is the requested
+* **Use Incorrect Key** - Sign the token with a key that is the requested
     type, but is not in the service's /.well-known/jwks.json file.
 
-*   **Claims** - Add claims configuration with the `+` button. Remove them with
+* **Claims** - Add claims configuration with the `+` button. Remove them with
     the `-` button.
 
-    *   **Claim ID** - The name of the claim.
-    *   **Claim Values** - One or more values for a claim. Supports
+  * **Claim ID** - The name of the claim.
+  * **Claim Values** - One or more values for a claim. Supports
         [templated parameters](#templated_parameters) that can access various
         server and request properties.
-    *   **JSON Value Type** - A value is assumed to have the string type unless
+  * **JSON Value Type** - A value is assumed to have the string type unless
         this is set to a non-string value.
-        *   `string` the set value is interpreted as a string. This is the
+    * `string` the set value is interpreted as a string. This is the
             default.
-        *   `array` the value is interpreted as an array of strings.
-        *   `number` the value is interpreted as a number. It must successfully
+    * `array` the value is interpreted as an array of strings.
+    * `number` the value is interpreted as a number. It must successfully
             parse as a number.
-        *   `boolean` the value is interpreted as a boolean value. It must be
+    * `boolean` the value is interpreted as a boolean value. It must be
             `true` or `false`.
-        *   `object` the value is interpreted as a JSON object. The value must
+    * `object` the value is interpreted as a JSON object. The value must
             be JSON formatted text.
 
 ### Templated Parameters
@@ -411,21 +411,21 @@ Parameters in `set` mode and Claims support
 [Go templates](https://pkg.go.dev/text/template). The template evaluation can
 access data in the `RequestInput` data structure.
 
-*   **Domain** - The domain name of the IdP service.
-*   **HTTPMethod** - The HTTP method called. GET, POST, etc.
-*   **Path** - The URL Path for the request.
-*   **Proto** - The URL proto, HTTP, HTTPS, etc.
-*   **Headers** - Array of HTTP Headers from the request.
-*   **URLParams** - URL Parameters.
-*   **FormParams** - Form parameters for POST requests.
-*   **Session** - Persisted session details key'd by the Auth Code.
-    *   **Code** - The Auth Code.
-    *   **Nonce** - The OIDC Nonce if specified.
-    *   **CodeChallenge** - The PKCE Code challenge if specified.
-    *   **CodeChallengeMethod** - The PKCE Code challenge method if specified.
-    *   **ClientID** - The Client ID from the Authorization request.
-    *   **RedirectURI** - The requested redirect URI.
-*   **Time** - Request time in the Go [Time](https://pkg.go.dev/time#Time) type.
+* **Domain** - The domain name of the IdP service.
+* **HTTPMethod** - The HTTP method called. GET, POST, etc.
+* **Path** - The URL Path for the request.
+* **Proto** - The URL proto, HTTP, HTTPS, etc.
+* **Headers** - Array of HTTP Headers from the request.
+* **URLParams** - URL Parameters.
+* **FormParams** - Form parameters for POST requests.
+* **Session** - Persisted session details key'd by the Auth Code.
+  * **Code** - The Auth Code.
+  * **Nonce** - The OIDC Nonce if specified.
+  * **CodeChallenge** - The PKCE Code challenge if specified.
+  * **CodeChallengeMethod** - The PKCE Code challenge method if specified.
+  * **ClientID** - The Client ID from the Authorization request.
+  * **RedirectURI** - The requested redirect URI.
+* **Time** - Request time in the Go [Time](https://pkg.go.dev/time#Time) type.
 
 #### Template Examples
 
@@ -550,7 +550,6 @@ The Client must validate the issuer claim.
     "json_type": "string"
 },
 ```
-
 
 ### OAuth2 Mix-up Attack
 
@@ -744,11 +743,11 @@ func(input *sessionmgmt.RequestInput, config *Config) ([]string, error)
 
 To add a new custom parameter, follow these steps:
 
-1.  Add a new Go file in the `src/config` directory. Name it something that
+1. Add a new Go file in the `src/config` directory. Name it something that
     represents what your parameter will evaluate. Add it to the `config`
     package.
 
-2.  Add a `init()` function to register the parameter using the
+2. Add a `init()` function to register the parameter using the
     `RegisterCustomParam` function. The first parameter is the ID of the
     parameter that will be used in the configuration to invoke the custom
     parameter evaluation function in the second parameter.
@@ -759,9 +758,9 @@ To add a new custom parameter, follow these steps:
     }
     ```
 
-3.  Implement your custom evaluation in the function registered in step #2.
+3. Implement your custom evaluation in the function registered in step #2.
 
-4.  Use your parameter in the configuration by selecting the `custom` Parameter
+4. Use your parameter in the configuration by selecting the `custom` Parameter
     Action and specifying your parameter's ID.
 
 ### Adding Configuration Options
@@ -777,11 +776,11 @@ Each field in the `Config` structure and sub-structures should have a struct tag
 
 * **json:** Sets the field name in JSON.
 * **jsonschema:** Allows setting JSON Schema parameters for the values.
-    * **title=** The title of the field in the form.
-    * **default=** The default value of the field in the form when the form is reset.
-    * **enum=** Turns the form in a selection box of the options listed.
+  * **title=** The title of the field in the form.
+  * **default=** The default value of the field in the form when the form is reset.
+  * **enum=** Turns the form in a selection box of the options listed.
 * **jsonschema_extras:** Sets additional behavioral configuration of the forms.
-    * **hide**= Hide this field in the form based on a condition. Conditions only allow other fields to be compared to field values through the Javascript operators === or !==. In the example below, the Values field will be hidden whenever the Action field is not `set`
+  * **hide**= Hide this field in the form based on a condition. Conditions only allow other fields to be compared to field values through the Javascript operators === or !==. In the example below, the Values field will be hidden whenever the Action field is not `set`
 
     ```
       Action    string   `json:"action" jsonschema:"title=Parameter Action,enum=passthrough,enum=set,enum=omit,enum=random,enum=custom,default=passthrough"`
@@ -803,3 +802,18 @@ You can run the backend Go tests as
 cd ./src
 go test ./ ...
 ```
+
+### Local frontend development
+
+Developing the frontend locally can seem a bit tricky, as it relies on the
+backend for its display the configuration forms. However, thanks to Angular's
+[proxy feature](https://v17.angular.io/guide/build#proxying-to-a-backend-server),
+it turns out to not be so bad. For developing on the frontend:
+
+1. Run the local standalone backend with `go run ./standalone/standalone_main.go`.
+    1. If you are not using the default port of 8080, you will also need to
+        update the Angular proxy config in `frontend/src/proxy.conf.json`.
+1. Switch to the `frontend` directory and run `ng serve`. Use the URL it provides
+    to navigate to the frontend. `ng serve` automatically rebuilds the frontend
+    on file changes making it much easier to test out frontend changes without
+    having to restart the backend.
