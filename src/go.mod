@@ -5,7 +5,8 @@ go 1.21
 require (
 	github.com/invopop/jsonschema v0.12.0
 	github.com/lestrrat-go/jwx v1.2.17
-	golang.org/x/crypto v0.0.0-20201217014255-9d1352758620
+	golang.org/x/crypto v0.17.0
+	golang.org/x/time v0.5.0
 	google.golang.org/appengine/v2 v2.0.1
 )
 
@@ -23,6 +24,5 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/time v0.5.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
