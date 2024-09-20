@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -25,6 +25,7 @@ import {FormlyModule, FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/co
 import {FormlyMaterialModule} from '@ngx-formly/material';
 import {ArrayTypeComponent} from './array.type';
 import {createGenericTestComponent} from './test-utils';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @Component({ selector: 'formly-form-test', template: ''})
 class TestComponent {
@@ -48,25 +49,22 @@ describe('Array component', () => {
       model: {},
     };
     TestBed.configureTestingModule({
-
-      declarations: [TestComponent, ArrayTypeComponent],
-      imports: [
-        HttpClientTestingModule,
-        ReactiveFormsModule,
+    declarations: [TestComponent, ArrayTypeComponent],
+    imports: [ReactiveFormsModule,
         FormlyMaterialModule,
         MatExpansionModule,
         MatInputModule,
         BrowserAnimationsModule,
         FormlyModule.forRoot({
-          types: [
-            {
-              name: 'array',
-              component: ArrayTypeComponent,
-            },
-          ],
-        }),
-      ],
-    });
+            types: [
+                {
+                    name: 'array',
+                    component: ArrayTypeComponent,
+                },
+            ],
+        })],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
   });
 
   it('should show content', () => {
