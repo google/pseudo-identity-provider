@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -42,42 +42,35 @@ import {FormeditComponent} from './formedit/formedit.component';
 import {ObjectTypeComponent} from './object.type';
 import {FormlyFieldTabs} from './tabs.type';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ArrayTypeComponent,
-    ObjectTypeComponent,
-    FormlyFieldTabs,
-    EditComponent,
-    FormeditComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormlyModule.forRoot({
-      validationMessages: [
-        {name: 'required', message: 'This field is required'},
-      ],
-      types: [
-        {name: 'array', component: ArrayTypeComponent},
-        {name: 'object', component: ObjectTypeComponent},
-        {name: 'tabs', component: FormlyFieldTabs},
-      ],
-    }),
-    FormlyMaterialModule,
-    FormsModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatListModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        ArrayTypeComponent,
+        ObjectTypeComponent,
+        FormlyFieldTabs,
+        EditComponent,
+        FormeditComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormlyModule.forRoot({
+            validationMessages: [
+                { name: 'required', message: 'This field is required' },
+            ],
+            types: [
+                { name: 'array', component: ArrayTypeComponent },
+                { name: 'object', component: ObjectTypeComponent },
+                { name: 'tabs', component: FormlyFieldTabs },
+            ],
+        }),
+        FormlyMaterialModule,
+        FormsModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatListModule,
+        MatTabsModule,
+        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

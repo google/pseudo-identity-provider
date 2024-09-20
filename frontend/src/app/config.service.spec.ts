@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import {TestBed} from "@angular/core/testing";
 import {ConfigService} from "./config.service";
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Test JSON Schema.
 let testSchema : any = {
@@ -60,9 +61,9 @@ describe('ConfigService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [ConfigService],
-    });
+    imports: [],
+    providers: [ConfigService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     configService = TestBed.inject(ConfigService);
     controller = TestBed.inject(HttpTestingController);
   });
