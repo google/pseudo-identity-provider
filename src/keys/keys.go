@@ -178,6 +178,7 @@ func makeRSAKey() (*SigningKey, error) {
 
 	key.Set("use", "sig")
 	key.Set("kid", "customidprsa")
+    key.Set("alg", "RS256")
 	return &SigningKey{Raw: raw, Jwk: key}, nil
 }
 
@@ -197,7 +198,9 @@ func makeECDSAKey(curve elliptic.Curve) (*SigningKey, error) {
 
 	key.Set("use", "sig")
 	key.Set("kid", "customidpecdsa"+curve.Params().Name)
+    key.Set("alg", curveToAlg(curve))
 	return &SigningKey{Raw: raw, Jwk: key}, nil
+
 }
 
 func algToCurve(alg string) elliptic.Curve {
@@ -212,4 +215,19 @@ func algToCurve(alg string) elliptic.Curve {
 
 	fmt.Printf("Invalid ECDSA alg specified %s", alg)
 	return elliptic.P256()
+}
+
+
+func curveToAlg(curve elliptic.Curve) string {
+	switch curve {
+	case elliptic.P256():
+		return "ES256"
+	case elliptic.P384():
+		return "ES384"
+	case elliptic.P521():
+		return "ES512"
+	}
+
+	fmt.Printf("Invalid elliptic curve specified %v", curve)
+	return "ES256"
 }
