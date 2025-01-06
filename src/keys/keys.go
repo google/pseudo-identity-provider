@@ -217,7 +217,6 @@ func algToCurve(alg string) elliptic.Curve {
 	return elliptic.P256()
 }
 
-
 func curveToAlg(curve elliptic.Curve) string {
 	switch curve {
 	case elliptic.P256():
