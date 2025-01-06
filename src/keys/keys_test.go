@@ -38,22 +38,27 @@ func TestKeys(t *testing.T) {
 
 	cases := []struct {
 		alg     string
+		algFull string
 		keyType string
 	}{
 		{
 			alg:     "RSA",
+			algFull: "RS256",
 			keyType: "RSA",
 		},
 		{
 			alg:     "ES256",
+			algFull: "ES256",
 			keyType: "EC",
 		},
 		{
 			alg:     "ES384",
+			algFull: "ES384",
 			keyType: "EC",
 		},
 		{
 			alg:     "ES512",
+			algFull: "ES512",
 			keyType: "EC",
 		},
 	}
@@ -63,6 +68,10 @@ func TestKeys(t *testing.T) {
 		if key == nil {
 			t.Errorf("key not found %q", tc.alg)
 			continue
+		}
+
+		if key.Jwk.Algorithm() != tc.algFull {
+			t.Errorf("unexpected algorithm from GetKey(%q) %q; want %q", tc.alg, key.Jwk.Algorithm(), tc.alg)
 		}
 
 		if key.Jwk.KeyType().String() != tc.keyType {
