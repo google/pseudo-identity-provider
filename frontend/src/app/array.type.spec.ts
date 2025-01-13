@@ -27,7 +27,10 @@ import {ArrayTypeComponent} from './array.type';
 import {createGenericTestComponent} from './test-utils';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-@Component({ selector: 'formly-form-test', template: ''})
+@Component({
+    selector: 'formly-form-test', template: '',
+    standalone: false
+})
 class TestComponent {
   fields = app.fields;
   form = app.form;

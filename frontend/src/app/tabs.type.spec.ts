@@ -23,7 +23,10 @@ import {FormlyModule, FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/co
 import {FormlyFieldTabs} from './tabs.type';
 import {createGenericTestComponent} from './test-utils';
 
-@Component({ selector: 'formly-form-test', template: ''})
+@Component({
+    selector: 'formly-form-test', template: '',
+    standalone: false
+})
 class TestComponent {
   fields = app.fields;
   form = app.form;

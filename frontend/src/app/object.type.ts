@@ -19,8 +19,9 @@ import {FieldType} from '@ngx-formly/core';
 import {FormlyMaterialModule} from '@ngx-formly/material';
 
 @Component({
-  selector: 'formly-object-type',
-  templateUrl: './object.type.html',
-  styleUrls: ['./object.type.css'],
+    selector: 'formly-object-type',
+    templateUrl: './object.type.html',
+    styleUrls: ['./object.type.css'],
+    standalone: false
 })
 export class ObjectTypeComponent extends FieldType {}

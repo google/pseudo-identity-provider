@@ -18,8 +18,9 @@ import {Component} from '@angular/core';
 import {FieldType, FormlyFieldConfig} from '@ngx-formly/core';
 
 @Component({
-  selector: 'formly-field-tabs',
-  templateUrl: './tabs.type.html',
+    selector: 'formly-field-tabs',
+    templateUrl: './tabs.type.html',
+    standalone: false
 })
 export class FormlyFieldTabs extends FieldType {
   tabName(field: FormlyFieldConfig): string {

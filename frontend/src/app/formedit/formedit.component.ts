@@ -24,9 +24,10 @@ import {ConfigService} from '../config.service';
 import * as helpers from '../formly.helpers';
 
 @Component({
-  selector: 'app-formedit',
-  templateUrl: './formedit.component.html',
-  styleUrl: './formedit.component.css',
+    selector: 'app-formedit',
+    templateUrl: './formedit.component.html',
+    styleUrl: './formedit.component.css',
+    standalone: false
 })
 export class FormeditComponent {
   form: FormGroup = new FormGroup({});
