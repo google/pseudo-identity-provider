@@ -20,9 +20,10 @@ import {ConfigService} from './config.service';
 import * as helpers from './formly.helpers';
 
 @Component({
-  selector: 'formly-array-type',
-  templateUrl: './array.type.html',
-  styleUrls: ['./array.type.css'],
+    selector: 'formly-array-type',
+    templateUrl: './array.type.html',
+    styleUrls: ['./array.type.css'],
+    standalone: false
 })
 export class ArrayTypeComponent extends FieldArrayType {
   constructor(private configService: ConfigService) {
