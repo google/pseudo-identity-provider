@@ -1,11 +1,12 @@
 module customidp
 
 go 1.21
+toolchain go1.24.1
 
 require (
 	github.com/invopop/jsonschema v0.12.0
 	github.com/lestrrat-go/jwx v1.2.29
-	golang.org/x/crypto v0.31.0
+	golang.org/x/crypto v0.35.0
 	golang.org/x/time v0.5.0
 	google.golang.org/appengine/v2 v2.0.1
 )
