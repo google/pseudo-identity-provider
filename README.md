@@ -15,6 +15,11 @@ complicated Mix-Up attacks for clients that support multiple IdPs.
 
 ## What's New!
 
+### 2026-05-17
+
+[MCP Server Support](#mcp-server) giving your AI access to configure your Pseudo IdP and fetch logs.
+The server is off by default, but can be enabled via the UI or environment flag.
+
 ### 2026-05-01
 
 Added a Callback Endpoint for testing arbitrary redirects back to the server.
@@ -823,6 +828,31 @@ The Pseudo IdP can also be configured to perform the
     }
 },
 ```
+
+## MCP Server
+
+Pseudo IdP exposes an optional StreamableHTTP MCP Server at `https://{yourdomain}/mcp`.
+The server is off by default, but can be enabled from the Web UI or by setting the
+`PSEUDO_IDP_ENABLE_MCP` environment variable to `true` before starting the server.
+
+### Configuring your MCP Client
+
+The MCP Server uses Basic HTTP Auth with the same username/password as other parts
+of the IdP server. You can configure your MCP Client to use either:
+
+1. The HTTP URL form `http://{username}:{password}@{yourdomain}/mcp`. 
+
+2. Set the `Authorization` header using HTTP Basic Auth. Running the hash tool will
+output the correct Authorization header format for your username and password.
+
+```bash
+cd ./src/hash
+go run hash_salt.go
+```
+
+### Skill
+
+The `pseudoidp_skill` folder has a ready to use skill for interacting with the MCP Server.
 
 ## Development
 
