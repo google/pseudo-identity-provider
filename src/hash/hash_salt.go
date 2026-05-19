@@ -63,19 +63,20 @@ func main() {
 
 	term.Restore(fd, oldState)
 
-	fmt.Println("\nFormat for docker-compose.yml:")
+	fmt.Println("\n\033[1mFormat for docker-compose.yml:\033[0m")
 	fmt.Println("environment:")
 	fmt.Printf("  - LOG_USERNAME=${LOG_USERNAME:-%s}\n", username)
 	fmt.Printf("  - LOG_PASSWORD=${LOG_PASSWORD:-%s}\n", dockerEscaped)
 
-	fmt.Println("\nFormat for command line or .env file:")
+	fmt.Println("\n\033[1mFormat for command line or .env file:\033[0m")
 	fmt.Printf("LOG_USERNAME=%s\n", username)
 	fmt.Printf("LOG_PASSWORD='%s'\n", hashStr)
 
-	fmt.Println("\nFormat for AppEngine app.yaml:")
-	fmt.Printf("LOG_USERNAME=%s\n", username)
-	fmt.Printf("LOG_PASSWORD=%s\n", hashStr)
+	fmt.Println("\n\033[1mFormat for AppEngine app.yaml:\033[0m")
+	fmt.Println("env_variables:")
+	fmt.Printf("  LOG_USERNAME: %s\n", username)
+	fmt.Printf("  LOG_PASSWORD: %s\n", hashStr)
 
-	fmt.Println("\nFormat for Auth HTTP header (MCP Clients):")
+	fmt.Println("\n\033[1mFormat for Auth HTTP header (MCP Clients):\033[0m")
 	fmt.Printf("Authorization: Basic %s\n\n", basicAuth)
 }
