@@ -19,6 +19,9 @@ Three tools are exposed by the `Psuedo Idp` MCP connector:
 | `Psuedo Idp:list_logs` | View recent request/response logs |
 
 **Always call `get_config` first** before making changes so you have the baseline and can restore it.
+Make sure to set the entire config structure and not only the values you want to change. The examples
+show only specific fields to change, but you will need to include the entire config including the default values
+that remain unchanged and the fields you have changed.
 
 ---
 
