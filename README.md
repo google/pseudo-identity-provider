@@ -852,7 +852,7 @@ go run hash_salt.go
 
 ### Skill
 
-The `pseudoidp_skill` folder has a ready to use skill for interacting with the MCP Server.
+A ready to use skill for Agents interacting with the MCP Server is in `src/mcp/skills`.
 
 ## Development
 
